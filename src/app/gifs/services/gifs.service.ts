@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,13 @@ export class GifsService {
       if(tag.length === 0 ) return;
       this.organizeHistory(tag);
 
-      this.http.get('/search?api_key=L6dP7tiyrg9k3SkcLXkAyRsECEHhURmP&q=advengers&limit=10')
+      const params = new HttpParams() // ya existe en js
+      .set('api_key', this.apiKey)
+      .set('limit', 10)
+      .set('q', tag);
+
+
+      this.http.get(`${this.serviceUrl}/search`, { params })
       .subscribe( resp => {
             console.log(resp);
 
