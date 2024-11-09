@@ -22,7 +22,10 @@ export class LazyImageComponent implements OnInit{
   }
 
   public onLoad(): void {
-    this.hasLoaded = true;
+      this.hasLoaded = true;
+    // setTimeout(() => {
+    //   this.hasLoaded = true;
+    // }, 1000);
   }
 
 }
